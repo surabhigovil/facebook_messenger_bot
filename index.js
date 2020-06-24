@@ -66,34 +66,45 @@ bot.hear(['food', 'yes', 'very hungry', 'hungry', 'starving'], (payload, chat, d
   });
 });
 
+
+bot.hear('notify me', (payload, chat) => {
+  chat.say({
+    payload: {
+      template_type:'one_time_notif_req',
+      title: 'Notify Me',
+      payload:'NOTIFY_ME'
+    }
+  });
+});
+
 bot.on('quick_reply', (payload, chat) => {
   const obj = payload.message.text.toLowerCase();
   console.log(obj);
 
   if(obj == "mexican"){
     chat.getUserProfile().then((user) => {
-      chat.say(`Here you go`);
+      chat.say(`Here you go, enjoy`);
       chat.say(`https://www.yummly.com/recipes?q=${obj}`);
     });
   } else if(obj == "italian") {
     chat.getUserProfile().then((user) => {
-      chat.say(`Here you go, ${user.first_name}`);
+      chat.say(`Here you go, enjoy`);
       chat.say(`https://www.yummly.com/recipes?q=${obj}`);
     });
   } else if(obj == "thai") {
     chat.getUserProfile().then((user) => {
-      chat.say(`Here you go, ${user.first_name}`);
+      chat.say(`Here you go, enjoy`);
       chat.say(`https://www.yummly.com/recipes?q=${obj}`);
     });
   } else if(obj == "american"){
     chat.getUserProfile().then((user) => {
-      chat.say(`Here you go, ${user.first_name}`);
+      chat.say(`Here you go, enjoy`);
       chat.say(`https://www.yummly.com/recipes?q=${obj}`);
     });
   }
 });
 
-bot.hear([/(good)?bye/i, /see (ya|you)/i, 'adios'], (payload, chat) => {
+bot.hear([/(good)?bye/i, /see (ya|you)/i, 'adios', 'thanks'], (payload, chat) => {
 	// Matches: goodbye, bye, see ya, see you, adios
 	chat.say('Bye, human!');
 });
