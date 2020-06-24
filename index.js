@@ -50,30 +50,9 @@ bot.hear(['food', 'yes', 'very hungry', 'hungry', 'starving'], (payload, chat, d
 // Send a button template
   console.log(data.keyword);
   const query = data.keyword;
-  fetch(GIPHY_URL + query)
-    .then(res => res.json())
-    .then(json => {
-      chat.say({
-        attachment: 'image',
-        url: json.data.image_url
-      }, {
-        typing: true
-      });
-    });
   chat.say({
   	text: 'What would you like to eat?',
   	quickReplies: ['Mexican', 'Thai', 'Italian', 'American']
-  });
-});
-
-
-bot.hear('notify me', (payload, chat) => {
-  chat.say({
-    payload: {
-      template_type:'one_time_notif_req',
-      title: 'Notify Me',
-      payload:'NOTIFY_ME'
-    }
   });
 });
 
